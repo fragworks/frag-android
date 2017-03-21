@@ -1,0 +1,6 @@
+[submodule "app/src/main/jni/SDL"]
+	path = app/src/main/jni/SDL
+	url = git@github.com:fragworks/sdl2.git
+[submodule "app/src/main/jni/SDL_image"]
+	path = app/src/main/jni/SDL_image
+	url = git@github.com:fragworks/sdl_image.git
