@@ -40,4 +40,6 @@ captures/
 *.jks
 
 # JNI Source Files
-app/src/main/jni/*.c
+app/src/main/jni/src/*.c
+app/src/main/jni/src/*.json
+app/src/main/obj
