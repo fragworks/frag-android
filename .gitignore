@@ -43,3 +43,4 @@ captures/
 app/src/main/jni/src/*.c
 app/src/main/jni/src/*.json
 app/src/main/obj
+app/src/main/jniLibs
