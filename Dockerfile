@@ -46,7 +46,7 @@ COPY app /app
 
 RUN cp frag/vendor/bgfx/.build/android-arm/bin/libbgfx-shared-libRelease.so /app/src/main/jni/src/libbgfx-shared-libRelease.so
 
-RUN cd /examples && nim c 00-hello-world/main.nim
+RUN cd /examples && nim c -d:distARM32 00-hello-world/main.nim
 
 RUN mkdir /out
 
