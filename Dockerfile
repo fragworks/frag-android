@@ -41,8 +41,8 @@ RUN cd frag/vendor/bgfx/.build/projects/gmake-android-arm && make config=release
 
 RUN cd frag && nimble install -y
 
-COPY platforms/android/examples /examples
-COPY platforms/android/app /app
+COPY examples /examples
+COPY app /app
 
 RUN cp frag/vendor/bgfx/.build/android-arm/bin/libbgfx-shared-libRelease.so /app/src/main/jni/src/libbgfx-shared-libRelease.so
 
