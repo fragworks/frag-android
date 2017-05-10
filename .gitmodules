@@ -4,3 +4,6 @@
 [submodule "app/src/main/jni/nuklear-nim"]
 	path = app/src/main/jni/nuklear-nim
 	url = https://github.com/zacharycarter/nuklear-nim.git
+[submodule "app/src/main/jni/SDL_image"]
+	path = app/src/main/jni/SDL_image
+	url = https://github.com/fragworks/sdl_image.git

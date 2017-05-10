@@ -14,6 +14,8 @@ RUN apt-get update --yes && apt-get install --yes \
   freeglut3-dev \
   libopenal1 libopenal-dev \
   libc6-dev-i386 \
+  libsdl2-dev \
+  libsdl2-image-dev \
   mercurial && \
 apt-get clean --yes
 
@@ -27,6 +29,8 @@ ENV PATH=${PATH}:/Nim/bin
 
 RUN git clone https://github.com/fragworks/frag.git && cd frag && git submodule update --init vendor/bx vendor/bgfx/ vendor/bimg
 
+RUN cd frag && git submodule update --init vendor/bx vendor/bgfx/ vendor/bimg
+
 RUN cd frag/vendor/bgfx && ../bx/tools/bin/linux/genie --with-shared-lib --gcc=android-arm gmake
 
 ENV ANDROID_NDK_ROOT=${ANDROID_NDK_HOME}
@@ -37,8 +41,8 @@ RUN cd frag/vendor/bgfx/.build/projects/gmake-android-arm && make config=release
 
 RUN cd frag && nimble install -y
 
-COPY examples /examples
-COPY app /app
+COPY platforms/android/examples /examples
+COPY platforms/android/app /app
 
 RUN cp frag/vendor/bgfx/.build/android-arm/bin/libbgfx-shared-libRelease.so /app/src/main/jni/src/libbgfx-shared-libRelease.so
 
