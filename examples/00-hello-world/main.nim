@@ -16,7 +16,8 @@ import
   frag/graphics/two_d/spritebatch,
   frag/graphics/two_d/texture,
   frag/graphics/types,
-  frag/modules/assets
+  frag/modules/assets,
+  frag/sound/sound
 
 type
   App = ref object
@@ -45,6 +46,7 @@ proc initApp(app: App, ctx: Frag) =
   logDebug "Loading assets..."
   app.assetIds.add(filename, ctx.assets.load(filename, AssetType.Texture))
   app.assetIds.add(filename2, ctx.assets.load(filename2, AssetType.Texture))
+  app.assetIds.add("sounds/test.ogg", ctx.assets.load("sounds/test.ogg", AssetType.Sound))
 
   app.batch = SpriteBatch(
     blendSrcFunc: BlendFunc.SrcAlpha,
@@ -61,15 +63,21 @@ proc initApp(app: App, ctx: Frag) =
   app.camera = Camera()
   app.camera.init(0)
   app.camera.ortho(1.0, size.x.float, size.y.float)
+
+  while not assetsLoaded and not assets.update(ctx.assets):
+    continue
+  assetsLoaded = true
+
+  var sound = assets.get[Sound](ctx.assets, app.assetIds["sounds/test.ogg"])
+  sound.setGain(0.5)
+
+  sound.play()
+
   log "App initialized."
 
 proc updateApp(app:App, ctx: Frag, deltaTime: float) =
   app.camera.update()
   app.batch.setProjectionMatrix(app.camera.combined)
-
-  while not assetsLoaded and not assets.update(ctx.assets):
-    return
-  assetsLoaded = true
 
 proc renderApp(app: App, ctx: Frag, deltaTime: float64) =
   ctx.graphics.clearView(0, ClearMode.Color.ord or ClearMode.Depth.ord, 0x303030ff, 1.0, 0)
