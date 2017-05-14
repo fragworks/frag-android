@@ -1,6 +1,6 @@
 [submodule "app/src/main/jni/SDL"]
 	path = app/src/main/jni/SDL
-	url = git@github.com:fragworks/sdl2.git
+	url = https://github.com/fragworks/sdl2.git
 [submodule "app/src/main/jni/nuklear-nim"]
 	path = app/src/main/jni/nuklear-nim
 	url = https://github.com/zacharycarter/nuklear-nim.git
